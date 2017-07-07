@@ -1,0 +1,24 @@
+---
+# This playbook deploys the whole application stack in this site.
+
+- name: Copy all the source iso to remote hosts
+  hosts: all
+  gather_facts: no
+  roles:
+    - cpiso
+
+- name: Create the network bridge on remote hosts
+  hosts: all
+  roles:
+    - role: network
+      network_bridge_interfaces:
+        - device: "{{ pub_br_nic }}br0"
+          bootproto: dhcp
+          type: bridge
+          ports: ["{{ pub_br_nic }}"]
+
+- name: Create the windows vms image on remote hosts
+  hosts: all
+  gather_facts: no
+  roles:
+    - genraw
