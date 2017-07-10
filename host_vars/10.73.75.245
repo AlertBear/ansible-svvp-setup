@@ -1,0 +1,7 @@
+---
+
+#
+# Bridge will be create over below nic
+#
+pub_nic: em2
+vlan_nic: p2p1

@@ -12,13 +12,23 @@
   roles:
     - role: network
       network_bridge_interfaces:
-        - device: "{{ pub_br_nic }}br0"
+        - device: "{{ pub_nic }}br0"
           bootproto: dhcp
           type: bridge
-          ports: ["{{ pub_br_nic }}"]
+          ports: ["{{ pub_nic }}"]
+        - device: "{{ vlan_nic }}br0"
+          bootproto: dhcp
+          type: bridge
+          ports: ["{{ vlan_nic }}"]
 
 - name: Create the windows vms image on remote hosts
   hosts: all
   gather_facts: no
   roles:
-    - genraw
+    - create_raw
+
+- name: Create the kvm commands on remote hosts
+  hosts: all
+  gather_facts: no
+  roles:
+    - kvm_cmd

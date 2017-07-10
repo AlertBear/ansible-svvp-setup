@@ -1,17 +1,27 @@
 ---
 
-# ssh to remote hosts with user and password
+#
+# ssh to remote hosts with ansible user and password
+#
 ansible_user: root
 ansible_ssh_pass: redhat
 
-# windows iso and virtio file
+#
+# The directory which refer to the windows and virtio iso file
+#
 windows_iso: /home/dguo/Work/svvp/iso/en_windows_server_2016_x64_dvd_9718492.iso
 virtio_iso: /home/dguo/Work/svvp/iso/virtio-win-1.9.1.iso
 virtio_vfd: /home/dguo/Work/svvp/iso/virtio-win-1.9.1_amd64.vfd
 
-# remote work directory
+#
+# The remote work directory which will store the file like
+# qemu-ifup.sh, windows.raw or etc.
+#
 remote_dir: /root/svvp/
 
-# Bridge will be create over below nic
-pub_br_nic: enp2s0
-vlan_br_nic:
+#
+# The RHVH or RHEL product name, default is 
+# "Red Hat Virtualization Host version 4.1"
+#
+product: Red Hat Virtualization Host version 4.1
+product_version: 4.0-5.1.el7

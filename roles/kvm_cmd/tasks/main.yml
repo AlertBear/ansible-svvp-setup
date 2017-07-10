@@ -1,0 +1,4 @@
+---
+
+- name: Create the kvm commands on remote hosts
+  debug: msg="Create the kvm command"

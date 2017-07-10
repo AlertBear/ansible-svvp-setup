@@ -1,0 +1,47 @@
+---
+
+#
+# SUT vm info
+#
+sut_vms:
+  - name: A-SUT
+    cpu:
+      mode: Operton_G5
+      count: 64
+    memory:
+      size: 256
+    hard_disk:
+      path: sut_win.raw
+      size: 600
+    usb_disk:
+      path: sut_usb.raw
+      size: 1
+    vnc:
+      port: 0
+
+#
+# MC and SC vm info
+#
+sc_vms:
+  - name: A-MC
+    cpu:
+      mode: Operton_G5
+      count: 4
+    memory:
+      size: 4
+    hard_disk:
+      path: mc_win.raw
+      size: 50
+    vnc:
+      port: 1
+  - name: A-SC
+    cpu:
+      mode: Operton_G5
+      count: 4
+    memory:
+      size: 4
+    hard_disk:
+      path: sc_win.raw
+      size: 50
+    vnc:
+      port: 2

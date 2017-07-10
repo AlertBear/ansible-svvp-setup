@@ -1,7 +1,0 @@
----
-- name: Create the network bridge on remote hosts
-  bennojoy.network_interface:
-    network_bridge_interfaces:
-      - device: "{{pub_br}}"
-        type: bridge
-        ports: ["{{pub_br_nic}}"]
