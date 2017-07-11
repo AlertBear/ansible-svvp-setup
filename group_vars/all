@@ -23,5 +23,5 @@ remote_dir: /root/svvp/
 # The RHVH or RHEL product name, default is 
 # "Red Hat Virtualization Host version 4.1"
 #
-product: Red Hat Virtualization Host version 4.1
+product_name: Red Hat Virtualization Host version 4.1
 product_version: 4.0-5.1.el7

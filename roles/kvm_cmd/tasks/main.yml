@@ -1,4 +1,22 @@
 ---
 
-- name: Create the kvm commands on remote hosts
-  debug: msg="Create the kvm command"
+- name: Create the qemu-ifup file
+  vars: bridge="{{ item }}"
+  template: src=templates/qemu_ifup.sh.j2 dest="{{ remote_dir }}"/"{{ item }}"_ifup.sh
+  with_items:
+    - "{{ pub_nic }}br0"
+    - "{{ vlan_nic }}br0"
+
+- name: Create the sut kvm command on remote hosts
+  vars:
+    product_name: "{{ product_name }}"
+    product_ver: "{{ product_version }}"
+    vm_name: "{{ item.name }}"
+    mem_size: "{{ item.memory.size }}"
+    cpu_count: "{{ item.cpu.count }}"
+    cpu_mode: "{{ item.cpu.mode }}"
+  template: src=templates/sut.sh.j2 dest="{{ remote_dir }}"/"{{ item.name }}".sh
+  with_items:
+    - "{{ sut_vms }}"
+
+- name: Create the sc kvm command on remote hosts

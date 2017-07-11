@@ -1,0 +1,4 @@
+#!/bin/sh
+switch={{ bridge }}
+/sbin/ip link set $1 up
+/usr/sbin/brctl addif ${switch} $1

@@ -1,21 +1,21 @@
 ---
 
 - name: Create the windows hard disk image of sut vms
-  command: /usr/bin/qemu-kvm create -f raw "{{ item.hard_disk.path }}" "{{ item.hard_disk.size }}" 
+  shell: qemu-img create -f raw "{{ item.hard_disk.path }}" "{{ item.hard_disk.size }}G" 
   args: 
     chdir: "{{ remote_dir }}"
   with_items:
     - "{{ sut_vms }}"
 
 - name: Create the windows usb disk image of sut vms
-  command: /usr/bin/qemu-kvm create -f raw "{{ item.usb_disk.path }}"  "{{ item.usb_disk.size }}"
+  shell: qemu-img create -f raw "{{ item.usb_disk.path }}"  "{{ item.usb_disk.size }}G"
   args:
     chdir: "{{ remote_dir }}"
   with_items:
     - "{{ sut_vms }}"
 
 - name: Create the windows hard disk image of SC vms
-  command: /usr/bin/qemu-kvm create -f raw "{{ item.hard_disk.path }}" "{{ item.hard_disk.size }}" 
+  shell: qemu-img create -f raw "{{ item.hard_disk.path }}" "{{ item.hard_disk.size }}G" 
   args: 
     chdir: "{{ remote_dir }}"
   with_items:
