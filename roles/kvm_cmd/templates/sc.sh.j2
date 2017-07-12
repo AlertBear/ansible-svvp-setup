@@ -6,7 +6,7 @@
     -cpu {{ cpu_mode }},hv-relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
     -m {{ mem_size }}G \
     -smp {{ cpu_count }} \
-    -uuid {{ random_uuid }} \
+    -uuid {{ vm_name | to_uuid }} \
     -nodefconfig \
     -rtc base=localtime,driftfix=slew \
     -cdrom {{ windows_iso }} \
@@ -15,12 +15,12 @@
     -object iothread,id=thread0 \
     -drive file={{win_disk_img}},if=none,format=raw,cache=none,werror=stop,rerror=stop,id=drive-virtio-disk0,aio=native \
     -device virtio-blk-pci,scsi=off,iothread=thread0,drive=drive-virtio-disk0,id=virtio-disk0 \
-    -netdev tap,id=hostnet0,script={{vlan_nic}}br0_ifup.sh,vhost=on \
-    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=00:e2:{{ random_mac }} \
-    -netdev tap,id=hostnet1,script={{ pub_nic }}br0_ifup.sh,vhost=on \
-    -device e1000,netdev=hostnet1,addr=0x9,id=net1,mac=00:52:{{ random_mac }} \
+    -netdev tap,id=hostnet0,script={{vlan_nic}}br0_ifup,vhost=on \
+    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=00:e2:52:1b:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }} \
+    -netdev tap,id=hostnet1,script={{ pub_nic }}br0_ifup,vhost=on \
+    -device e1000,netdev=hostnet1,addr=0x9,id=net1,mac=00:52:2b:e3:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }} \
     -device piix3-usb-uhci,id=usb \
     -device usb-tablet,id=tablet0 \
     -vnc 0.0.0.0:{{ vnc_port }} \
     -vga std \
-    -monitor stdio \
+    -monitor stdio

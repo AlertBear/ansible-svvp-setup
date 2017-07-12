@@ -1,6 +1,0 @@
----
-  - name: Copy the source iso files to remote hosts
-    copy: src={{ item.src }} dest={{ item.dest }}
-    with_items:
-      - { src: "{{ windows_iso }}", dest: "{{remote_dir}}" }
-      - { src: "{{virtio_iso}}", dest: "{{remote_dir}}" }  
