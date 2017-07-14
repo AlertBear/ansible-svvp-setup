@@ -4,9 +4,9 @@
 # SUT vm info
 #
 sut_vms:
-  - name: I-SUT
+  - name: SUT-I-rhvh41
     cpu:
-      mode: SandyBridge
+      mode: Westmere
       count: 64
     memory:
       size: 256
@@ -23,9 +23,9 @@ sut_vms:
 # MC and SC vm info
 #
 sc_vms:
-  - name: I-MC
+  - name: MC-I-rhvh41
     cpu:
-      mode: SandyBridge
+      mode: Westmere
       count: 4
     memory:
       size: 4
@@ -34,9 +34,9 @@ sc_vms:
       size: 50
     vnc:
       port: 1
-  - name: I-SC
+  - name: SC-I-rhvh41
     cpu:
-      mode: SandyBridge
+      mode: Westmere
       count: 4
     memory:
       size: 4

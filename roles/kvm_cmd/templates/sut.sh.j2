@@ -5,7 +5,7 @@
     -smp {{ cpu_count }} \
     -cpu {{ cpu_mode }},hv-relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
     -uuid {{ vm_name | to_uuid }} \
-    -smbios type=1,manufacturer=Red Hat,product={{ product_name }},version={{ product_version }},serial=44454C4C-{{ 9999 | random(start=1000) }}-1058-804B-B7 C04 F483258_00:21:9b:58:2d:{{ 99 | random(start=10) }},uuid={{ vm_name | to_uuid }} \
+    -smbios type=1,manufacturer="Red Hat",product="{{ product_name }}",version={{ product_version }},serial="44454C4C-{{ 9999 | random(start=1000) }}-1058-804B-B7 C04 F483258_00:21:9b:58:2d:{{ 99 | random(start=10) }}",uuid={{ vm_name | to_uuid }} \
     -usb -device usb-tablet,id=tablet0 -boot menu=on \
     -monitor stdio \
     -rtc base=localtime,clock=host,driftfix=slew \
@@ -13,17 +13,16 @@
     -mon chardev=b111a,mode=readline \
     -global PIIX4_PM.disable_s3=1 \
     -global PIIX4_PM.disable_s4=1 \
+    -fda {{ virtio_vfd }} \
     -cdrom {{ windows_iso }} \
     -device usb-ehci,id=ehci0 \
-    -drive file={{ virtio_iso }},if=none,media=cdrom,id=drive-ide0-1-0,readonly=on,format=raw \
-    -device ide-drive,bus=ide.0,drive=drive-ide0-1-0,id=ide0-1-0 \
     -drive file={{ win_disk_img }},if=none,id=drive-virtio0-0-0,format=raw,werror=stop,rerror=stop,cache=none,serial=number \
     -device virtio-blk-pci,drive=drive-virtio0-0-0,id=virti0-0-0,bootindex=1 \
     -drive file={{ usb_disk_img }},if=none,id=drive-usb-2-0,media=disk,format=raw,cache=none,werror=stop,rerror=stop,aio=threads \
     -device usb-storage,bus=ehci0.0,drive=drive-usb-2-0,id=usb-2-0,removable=on \
     -netdev tap,id=hostnet0,script={{ vlan_nic }}br0_ifup,vhost=on,queues=48 \
-    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=00:e2:52:69:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }},addr=0x04,mq=on,vectors=98 \
+    -device virtio-net-pci,netdev=hostnet0,id=net0,mac=00:e2:52:69:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }},addr=0x8,mq=on,vectors=98 \
     -netdev tap,id=hostnet1,script={{ pub_nic }}br0_ifup,vhost=on \
-    -device e1000,netdev=hostnet1,addr=0x9,id=net1,mac=00:52:b1:e3:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }}
+    -device e1000,netdev=hostnet1,addr=0x9,id=net1,mac=00:52:b1:e3:{{ 99 | random(start=10) }}:{{ 99 | random(start=10) }} \
     -vnc :{{ vnc_port }} \
     -vga std

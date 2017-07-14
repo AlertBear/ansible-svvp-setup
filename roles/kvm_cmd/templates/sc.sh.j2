@@ -9,10 +9,8 @@
     -uuid {{ vm_name | to_uuid }} \
     -nodefconfig \
     -rtc base=localtime,driftfix=slew \
+    -fda {{ virtio_vfd }} \
     -cdrom {{ windows_iso }} \
-    -drive file={{ virtio_iso }},if=none,media=cdrom,id=drive-ide0-1-0,readonly=on,format=raw \
-    -device ide-drive,bus=ide.0,unit=0,drive=drive-ide0-1-0,id=ide0-1-0 \
-    -object iothread,id=thread0 \
     -drive file={{win_disk_img}},if=none,format=raw,cache=none,werror=stop,rerror=stop,id=drive-virtio-disk0,aio=native \
     -device virtio-blk-pci,scsi=off,iothread=thread0,drive=drive-virtio-disk0,id=virtio-disk0 \
     -netdev tap,id=hostnet0,script={{vlan_nic}}br0_ifup,vhost=on \

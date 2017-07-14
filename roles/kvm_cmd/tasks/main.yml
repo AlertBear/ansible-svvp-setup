@@ -3,7 +3,7 @@
 - name: Create the qemu-ifup file
   vars: 
     bridge: "{{ item }}"
-  template: src=templates/qemu_ifup.sh.j2 dest="{{ remote_dir }}/{{ item }}_ifup"
+  template: src=templates/qemu_ifup.sh.j2 dest="{{ remote_dir }}/{{ item }}_ifup" mode='0744'
   with_items:
     - "{{ pub_nic }}br0"
     - "{{ vlan_nic }}br0"
@@ -17,7 +17,7 @@
     win_disk_img: "{{ item.hard_disk.path }}"
     usb_disk_img: "{{ item.usb_disk.path }}"
     vnc_port: "{{ item.vnc.port }}"
-  template: src=templates/sut.sh.j2 dest="{{ remote_dir }}/{{ item.name }}.sh"
+  template: src=templates/sut.sh.j2 dest="{{ remote_dir }}/{{ item.name }}.sh" mode='0744'
   with_items:
     - "{{ sut_vms }}"
 
@@ -29,6 +29,6 @@
     cpu_mode: "{{ item.cpu.mode }}"
     win_disk_img: "{{ item.hard_disk.path }}"
     vnc_port: "{{ item.vnc.port }}"
-  template: src=templates/sc.sh.j2 dest="{{ remote_dir }}/{{ item.name }}.sh"
+  template: src=templates/sc.sh.j2 dest="{{ remote_dir }}/{{ item.name }}.sh" mode='0744'
   with_items:
     - "{{ sc_vms }}"

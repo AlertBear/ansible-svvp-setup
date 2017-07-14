@@ -4,10 +4,10 @@
 # SUT vm info
 #
 sut_vms:
-  - name: A-SUT
+  - name: SUT-A
     cpu:
       mode: Operton_G5
-      count: 64
+      count: 48
     memory:
       size: 256
     hard_disk:
@@ -23,7 +23,7 @@ sut_vms:
 # MC and SC vm info
 #
 sc_vms:
-  - name: A-MC
+  - name: MC-A
     cpu:
       mode: Operton_G5
       count: 4
@@ -34,7 +34,7 @@ sc_vms:
       size: 50
     vnc:
       port: 1
-  - name: A-SC
+  - name: SC-A
     cpu:
       mode: Operton_G5
       count: 4

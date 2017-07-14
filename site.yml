@@ -10,7 +10,7 @@
 - name: Create the network bridge on remote hosts
   hosts: all
   roles:
-    - role: network
+    - role: create_bridge
       network_bridge_interfaces:
         - device: "{{ pub_nic }}br0"
           bootproto: dhcp
